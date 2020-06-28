@@ -1,0 +1,37 @@
+
+<h1>Expense page</h1>
+
+<input type="text" placeholder="search" (keyup)="getExpenseList()" [(ngModel)]="filterText" >
+<select id="filter" class="filter" [(ngModel)]="filterName" (change)="getExpenseList()"  >
+    <option value="amount">amount</option>
+    <option value="createdAt">Date</option>
+</select>    
+
+<input type="date" [(ngModel)]="date1" name="date1" (change)="getExpenseList()" />
+
+<input type="date"  [(ngModel)]="date2" name="date2" /> 
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Note</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let expens of expenses">
+            <td>{{ expens.description }}</td>
+            <td>{{expens.createdAt | date:'mediumDate' }}</td>
+            <td>{{expens.amount}}</td>
+            <td>{{expens.note}}</td>
+            <td> <button  routerLink="/user/{{ expens.userId }}/expense/{{ expens.id }}" routerLinkActive="active">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button  routerLink="/user/{{userId }}/expense/0" routerLinkActive="active">Add Expense</button>
+<button  routerLink="/login" routerLinkActive="active">Logout</button>
