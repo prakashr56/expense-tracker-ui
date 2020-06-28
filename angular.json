@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AngularCrud": {
+    "expense-tracker-ui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/AngularCrud",
+            "outputPath": "dist/expense-tracker-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AngularCrud:build"
+            "browserTarget": "expense-tracker-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "AngularCrud:build:production"
+              "browserTarget": "expense-tracker-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AngularCrud:build"
+            "browserTarget": "expense-tracker-ui:build"
           }
         },
         "test": {
@@ -111,15 +111,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "AngularCrud:serve"
+            "devServerTarget": "expense-tracker-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "AngularCrud:serve:production"
+              "devServerTarget": "expense-tracker-ui:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "AngularCrud"
+  "defaultProject": "expense-tracker-ui"
 }
