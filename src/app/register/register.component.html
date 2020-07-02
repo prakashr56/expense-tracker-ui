@@ -1,12 +1,18 @@
-<h1>Register page</h1>
 
-<form>
+<form class="text-center border border-light p-5" action="#!">
 
-    <input placeholder="Enter User Name" [(ngModel)]="user.userName" name="userName" />
-    <input placeholder="Enter Password" [(ngModel)]="user.password" name="password" />
-    
-    <button type="submit"  (click)="register()">Register</button>
+    <p class="h4 mb-4">Register Here</p>
 
-    <button  routerLink="/login" routerLinkActive="active">Back to Login</button>   
-    
+    <!-- Email -->
+    <input type="email" [(ngModel)]="user.userName" name="userName" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" >
+
+    <!-- Password -->
+    <input type="password" [(ngModel)]="user.password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" >
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit" (click)="register()">Register</button>
+
+    <button class="btn btn-light btn-block my-4" type="submit"  routerLink="/login" routerLinkActive="active">Back to Login</button>
+
 </form>
+

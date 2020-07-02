@@ -1,4 +1,4 @@
-<h1>Add Expense Page</h1>
+<!-- <h1>Add Expense Page</h1>
 
 <form>
 
@@ -10,4 +10,36 @@
     <button type="submit"  (click)="addExpense()">Add Expense</button>
     <button  routerLink="/login" routerLinkActive="active">Logout</button>   
     
+</form> -->
+
+<form class="text-center border border-light p-5" action="#!">
+
+    <p class="h4 mb-4">Add Expense</p>
+
+    <!-- Email -->
+    <input type="text" [(ngModel)]="expense.description" name="description"  class="form-control mb-4" placeholder="Enter Description" >
+
+    <!-- <input type="text" [(ngModel)]="expense.description" name="description"  class="form-control mb-4" placeholder="Enter Description" > -->
+
+    <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
+
+    <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+
+    <!-- Amount -->
+    <input type="text" [(ngModel)]="expense.amount" name="amount"  class="form-control mb-4" placeholder="Enter Amount" >
+
+    <!-- Note -->
+    <input type="text" [(ngModel)]="expense.note" name="note"  class="form-control mb-4" placeholder="Enter Note" >
+    
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit" (click)="addExpense()">Add Expense</button>
+
+    <button class="btn btn-danger btn-block my-4" type="submit" (click)="deleteExpense()">Dlete</button>
+
+    <button class="btn btn-light btn-block my-4" type="submit"  routerLink="/user/{{userId}}/expense" routerLinkActive="active">Back</button>
+
+    <button class="btn btn-secondary btn-block my-4" type="submit"  routerLink="/login" routerLinkActive="active">Logout</button>
+
 </form>

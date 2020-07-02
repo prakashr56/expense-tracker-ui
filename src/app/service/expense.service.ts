@@ -44,7 +44,7 @@ export class ExpenseService {
 
       addExpense(expense: Expense, userId: number){  
 
-        expense.createdAt = Date.parse(expense.createdAt);
+        // expense.createdAt = Date.parse(expense.createdAt);
     
         this.httpOptions = {
           headers: new HttpHeaders({
@@ -56,6 +56,32 @@ export class ExpenseService {
           
         this.httpClient
           .post<any>(`http://localhost:8080/expense/save`, JSON.stringify(expense), this.httpOptions
+          )
+          .subscribe(
+            response => {
+              console.log("response: " + response);
+              this.router.navigate(["/user/"+userId+"/expense"]);     
+            },
+            error => {
+              alert('Something went wrong!' );
+              console.log( 'Something went wrong!' );
+                
+            }
+          );
+      }
+
+      deleteExpense(expenseId: number, userId: number){  
+    
+        this.httpOptions = {
+          headers: new HttpHeaders({
+            "Content-Type":"application/json",
+            'Access-Control-Allow-Origin': '*',
+            Accept: '*'
+          })
+        };  
+          
+        this.httpClient
+          .delete<any>(`http://localhost:8080/expense/delete/`+expenseId, this.httpOptions
           )
           .subscribe(
             response => {

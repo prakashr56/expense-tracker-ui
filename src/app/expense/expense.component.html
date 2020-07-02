@@ -1,37 +1,52 @@
 
-<h1>Expense page</h1>
+<form class="text-center border border-light p-5" action="#!">
 
-<input type="text" placeholder="search" (keyup)="getExpenseList()" [(ngModel)]="filterText" >
-<select id="filter" class="filter" [(ngModel)]="filterName" (change)="getExpenseList()"  >
-    <option value="amount">amount</option>
-    <option value="createdAt">Date</option>
-</select>    
+    <p class="h4 mb-4">Expenses</p>
 
-<input type="date" [(ngModel)]="date1" name="date1" (change)="getExpenseList()" />
+</form>    
 
-<input type="date"  [(ngModel)]="date2" name="date2" /> 
+    <input type="text" placeholder="search" (keyup)="getExpenseList()" [(ngModel)]="filterText" >
+    <select id="filter" class="filter custom-select" style="width: auto"  [(ngModel)]="filterName" (change)="getExpenseList()"  >
+        <option value="amount">amount</option>
+        <option value="createdAt">Date</option>
+    </select>    
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Note</th>
-            <th>Edit</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let expens of expenses">
-            <td>{{ expens.description }}</td>
-            <td>{{expens.createdAt | date:'mediumDate' }}</td>
-            <td>{{expens.amount}}</td>
-            <td>{{expens.note}}</td>
-            <td> <button  routerLink="/user/{{ expens.userId }}/expense/{{ expens.id }}" routerLinkActive="active">Edit</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <input class="form-control" placeholder="yyyy-mm-dd"
+    name="dp" [(ngModel)]="fromDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (dateSelect)="getExpenseList()" >
 
-<button  routerLink="/user/{{userId }}/expense/0" routerLinkActive="active">Add Expense</button>
-<button  routerLink="/login" routerLinkActive="active">Logout</button>
+    <input class="form-control" placeholder="yyyy-mm-dd"
+    name="dt" [(ngModel)]="toDate" ngbDatepicker #t="ngbDatepicker" (click)="t.toggle()" (dateSelect)="getExpenseList()" >
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Note</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let expens of expenses">
+                <td>{{ expens.description }}</td>
+                <td>{{expens.createdAt | date:'mediumDate' }}</td>
+                <td>{{expens.amount}}</td>
+                <td>{{expens.note}}</td>
+                <td> <button class="btn btn-link" routerLink="/user/{{ expens.userId }}/expense/{{ expens.id }}" routerLinkActive="active">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <!-- 
+        <button  routerLink="/user/{{userId }}/expense/0" routerLinkActive="active">Add Expense</button>
+        <button  routerLink="/login" routerLinkActive="active">Logout</button> -->
+
+    <form class="text-center border border-light p-5" action="#!">
+
+        <button class="btn btn-info btn-block my-4" type="submit" routerLink="/user/{{userId }}/expense/0" routerLinkActive="active">Add Expense</button>
+
+        <button class="btn btn-light btn-block my-4" type="submit" routerLink="/login" routerLinkActive="active">Logout</button>
+
+    </form>

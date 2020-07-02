@@ -1,10 +1,9 @@
 import { ExpenseService } from './../service/expense.service';
-import { ApicallService } from './../service/apicall.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Expense } from '../model/expense';
-// import { DatePipe } from '@angular/common';
+import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -20,14 +19,18 @@ export class ExpenseComponent implements OnInit {
   httpOptions;
   filterName: string = "";
   filterText: string ="";
-  date1: string = Date.now().toString();
-  date2: string;
-  date = new Date();
+  fromDate: NgbDate | null;
+  toDate: NgbDate | null;
 
   constructor(private http: HttpClient,
     private activatedRoute: ActivatedRoute,
-    private expenseService: ExpenseService
-    ) { }
+    private expenseService: ExpenseService,
+    private calendar: NgbCalendar,
+    public formatter: NgbDateParserFormatter
+    ) {
+        this.fromDate = calendar.getToday();
+        this.toDate = calendar.getToday();
+     }
 
   ngOnInit() {
 
@@ -37,23 +40,20 @@ export class ExpenseComponent implements OnInit {
 
     this.getExpenseList();
 
-    this.date1  = new Date(this.date.getFullYear(), this.date.getMonth(), 2).toJSON().split("T")[0] ;
-
-    this.date2  = new Date().toJSON().split("T")[0] ;
   }
 
   getExpenseList(){
     this.expenseService.getExpenseList(this.userId).subscribe((data:any) => {
-      this.expenses = data;
+      this.expenses = data;     
       this.filterSearch();
     });
   }
 
   filterSearch(){
 
-    
         this.expenses = this.expenses.filter(
-          m => new Date(m.createdAt) >= new Date(this.date1) && new Date(m.createdAt) <= new Date(this.date2)
+          m => new Date(m.createdAt) >= new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day) 
+              && new Date(m.createdAt) <= new Date(this.toDate.year, this.toDate.month-1, this.toDate.day)
         );
       
        if(this.filterText || 0 <= this.filterText.length){
@@ -72,5 +72,6 @@ export class ExpenseComponent implements OnInit {
          
           });     
   }
+
 
 }
