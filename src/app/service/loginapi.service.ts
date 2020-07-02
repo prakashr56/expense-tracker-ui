@@ -26,9 +26,11 @@ export class LoginapiService {
         Accept: '*'
       })
     };
+
+    
       
       this.http
-        .post<any>(`http://localhost:8080/login/loginUser`, JSON.stringify(user), this.httpOptions
+        .post<any>(`https://prakashr-expense-tracker-api.herokuapp.com/login/loginUser`, JSON.stringify(user), this.httpOptions
         )
         .subscribe(
           response => {
