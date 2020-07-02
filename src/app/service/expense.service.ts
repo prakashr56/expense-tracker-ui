@@ -44,7 +44,7 @@ export class ExpenseService {
 
       addExpense(expense: Expense, userId: number){  
 
-        // expense.createdAt = Date.parse(expense.createdAt);
+        expense.createdAt = Date.parse(expense.createdAt);
     
         this.httpOptions = {
           headers: new HttpHeaders({

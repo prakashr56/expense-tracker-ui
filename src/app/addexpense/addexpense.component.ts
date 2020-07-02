@@ -61,10 +61,8 @@ export class AddexpenseComponent implements OnInit {
   addExpense(){  
 
     // Date Parse
-    this.expense.createdAt = Date.parse(this.date.day+"-"+this.date.month+"-"+this.date.year);
-    alert(this.date.day+"-"+this.date.month+"-"+this.date.year);
-    return;
-
+    // this.expense.createdAt = Date.parse(this.date.day+"-"+this.date.month+"-"+this.date.year);
+  
     this.expenseService.addExpense(this.expense, this.userId);
   }
 

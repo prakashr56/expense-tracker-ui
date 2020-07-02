@@ -23,8 +23,10 @@
 
     <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
 
-    <input class="form-control" placeholder="yyyy-mm-dd"
-             name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+    <!-- <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"> -->
+
+             <input placeholder="Enter Date" type="date" [(ngModel)]="expense.createdAt" name="createdAt" />
 
     <!-- Amount -->
     <input type="text" [(ngModel)]="expense.amount" name="amount"  class="form-control mb-4" placeholder="Enter Amount" >
