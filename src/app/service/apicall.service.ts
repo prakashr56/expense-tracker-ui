@@ -15,7 +15,7 @@ export class ApicallService {
 
   constructor( private httpClient: HttpClient) { }
   getUsers() {
-    return this.httpClient.get(`http://localhost:8080/api/userList`).
+    return this.httpClient.get(`https://prakashr-expense-tracker-api.herokuapp.com/api/userList`).
         pipe(
            map((data: Users[]) => {
              console.log("data "+ JSON.stringify(data));
@@ -30,7 +30,7 @@ export class ApicallService {
      
 
     createUsers(user: Users[]){
-      return this.httpClient.post(`http://localhost:8080/api/save`, user)
+      return this.httpClient.post(`https://prakashr-expense-tracker-api.herokuapp.com/api/save`, user)
       .pipe(map((data: any) => {
         return JSON.parse(JSON.stringify(data));
       }),

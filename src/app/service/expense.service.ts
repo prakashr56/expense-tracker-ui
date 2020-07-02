@@ -17,7 +17,7 @@ export class ExpenseService {
     ) { }
 
   getExpenseList(userId: number) {
-    return this.httpClient.get("http://localhost:8080/expense/"+userId).
+    return this.httpClient.get("https://prakashr-expense-tracker-api.herokuapp.com/expense/"+userId).
         pipe(
            map((data: Expense[]) => {
              console.log("ExpenseData:  "+ JSON.stringify(data));
@@ -30,7 +30,7 @@ export class ExpenseService {
     }
 
     getExpense(id: number) {
-      return this.httpClient.get("http://localhost:8080/expense/userexpense/"+id).
+      return this.httpClient.get("https://prakashr-expense-tracker-api.herokuapp.com/expense/userexpense/"+id).
           pipe(
              map((data: Expense[]) => {
                console.log("expense data "+ JSON.stringify(data));
@@ -55,7 +55,7 @@ export class ExpenseService {
         };  
           
         this.httpClient
-          .post<any>(`http://localhost:8080/expense/save`, JSON.stringify(expense), this.httpOptions
+          .post<any>(`https://prakashr-expense-tracker-api.herokuapp.com/expense/save`, JSON.stringify(expense), this.httpOptions
           )
           .subscribe(
             response => {
@@ -81,7 +81,7 @@ export class ExpenseService {
         };  
           
         this.httpClient
-          .delete<any>(`http://localhost:8080/expense/delete/`+expenseId, this.httpOptions
+          .delete<any>(`https://prakashr-expense-tracker-api.herokuapp.com/expense/delete/`+expenseId, this.httpOptions
           )
           .subscribe(
             response => {

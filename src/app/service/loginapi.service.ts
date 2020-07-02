@@ -1,9 +1,6 @@
 import { Router } from '@angular/router';
-import { Users } from './../users';
-import { map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +23,6 @@ export class LoginapiService {
         Accept: '*'
       })
     };
-
-    
       
       this.http
         .post<any>(`https://prakashr-expense-tracker-api.herokuapp.com/login/loginUser`, JSON.stringify(user), this.httpOptions

@@ -21,7 +21,7 @@ export class RegisterService {
     };
 
     this.http
-        .post<any>(`http://localhost:8080/api/save`, JSON.stringify(user), this.httpOptions
+        .post<any>(`https://prakashr-expense-tracker-api.herokuapp.com/api/save`, JSON.stringify(user), this.httpOptions
         )
         .subscribe(
           response => {

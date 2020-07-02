@@ -50,7 +50,7 @@ export class UserComponent implements OnInit {
     };
       
       this.htttp
-        .post<any>(`http://localhost:8080/api/save`, JSON.stringify(this.user), this.httpOptions
+        .post<any>(`https://prakashr-expense-tracker-api.herokuapp.com/api/save`, JSON.stringify(this.user), this.httpOptions
         )
         .subscribe(
           response => {
