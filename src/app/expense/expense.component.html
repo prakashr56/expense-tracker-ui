@@ -24,7 +24,6 @@
                 <th>Description</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th>Note</th>
                 <th></th>
             </tr>
         </thead>
@@ -33,15 +32,22 @@
                 <td>{{ expens.description }}</td>
                 <td>{{expens.createdAt | date:'mediumDate' }}</td>
                 <td>{{expens.amount}}</td>
-                <td>{{expens.note}}</td>
                 <td> <button class="btn btn-link" routerLink="/user/{{ expens.userId }}/expense/{{ expens.id }}" routerLinkActive="active">Edit</button>
                 </td>
             </tr>
         </tbody>
     </table>
-        <!-- 
-        <button  routerLink="/user/{{userId }}/expense/0" routerLinkActive="active">Add Expense</button>
-        <button  routerLink="/login" routerLinkActive="active">Logout</button> -->
+
+    <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Expense List</div>
+        <div class="card-body"  *ngFor="let expense of expenses">
+          <h5 class="card-title">{{ expense.description }}</h5>
+            <div class="display-row">
+                <p class="card-text">{{expense.createdAt | date:'mediumDate' }}</p>
+                <span class="badge badge-pill badge-warning">{{expense.amount}}</span>
+            </div>
+        </div>
+      </div>
 
     <form class="text-center border border-light p-5" action="#!">
 

@@ -1,0 +1,8 @@
+.card-title{
+    text-align: center
+}
+
+.display-row{
+    display: flex;
+    justify-content: space-around;
+}

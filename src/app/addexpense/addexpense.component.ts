@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Expense } from '../model/expense';
 import {NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class AddexpenseComponent implements OnInit {
   httpOptions;
   // model: NgbDateStruct;
   date: NgbDate | null;
-
+  dateMoment = moment();
 
   constructor(private activatedRoute: ActivatedRoute,
     private http: HttpClient,
@@ -40,21 +41,26 @@ export class AddexpenseComponent implements OnInit {
     if(this.expenseId === 0){
       this.expense = new Expense();
       this.expense.userId = this.userId;   
-      this.date = this.calendar.getToday();
+      this.expense.createdAt = this.dateMoment.format('YYYY-DD-MM');
+      
+      // this.date = this.calendar.getToday();
     }
     else{
       this.getExpense()
     } 
+
+
+    let now = moment(); // add this 2 of 4
+    console.log('hello world', now.format()); // add this 3 of 4
+    console.log(now.add(7, 'days').format()); // add this 4of 4
   }
 
   getExpense(){
     this.expenseService.getExpense(this.expenseId).subscribe((data:any) => {
       this.expense = data;      
-      this.expense.createdAt = new Date(+this.expense.createdAt).toJSON().split("T")[0] ;
-      // new Date(+this.expense.createdAt).toJSON().split("T")[0];
-      let tempDate = new Date(+this.expense.createdAt);
-      
-      // this.date =  this.formatter.format(this.expense.createdAt);
+      // this.expense.createdAt = new Date(+this.expense.createdAt).toJSON().split("T")[0] ;
+
+      this.expense.createdAt =  moment(this.expense.createdAt).format('YYYY-DD-MM');
     });
   }
 
@@ -69,7 +75,6 @@ export class AddexpenseComponent implements OnInit {
   deleteExpense(){
 
       this.expenseService.deleteExpense(this.expenseId, this.userId);
-
   }
 
 }
