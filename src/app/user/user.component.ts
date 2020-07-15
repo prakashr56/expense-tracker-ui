@@ -50,7 +50,7 @@ export class UserComponent implements OnInit {
     };
       
       this.htttp
-        .post<any>(`https://prakashr-expense-tracker-api.herokuapp.com/api/save`, JSON.stringify(this.user), this.httpOptions
+        .post<any>(this.apiService.hostName+`/api/save`, JSON.stringify(this.user), this.httpOptions
         )
         .subscribe(
           response => {
@@ -61,8 +61,7 @@ export class UserComponent implements OnInit {
             // return throwError ( 'Something went wrong!' );
             console.log( 'Something went wrong!' );
             
-          },
-          () => {}
+          }
         );
   }
 }

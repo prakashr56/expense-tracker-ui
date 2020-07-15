@@ -41,7 +41,7 @@ export class AddexpenseComponent implements OnInit {
     if(this.expenseId === 0){
       this.expense = new Expense();
       this.expense.userId = this.userId;   
-      this.expense.createdAt = this.dateMoment.format('YYYY-DD-MM');
+      this.expense.createdAt = this.dateMoment.format('YYYY-MM-DD');
       
       // this.date = this.calendar.getToday();
     }
@@ -60,7 +60,7 @@ export class AddexpenseComponent implements OnInit {
       this.expense = data;      
       // this.expense.createdAt = new Date(+this.expense.createdAt).toJSON().split("T")[0] ;
 
-      this.expense.createdAt =  moment(this.expense.createdAt).format('YYYY-DD-MM');
+      this.expense.createdAt =  moment(this.expense.createdAt).format('YYYY-MM-DD');
     });
   }
 

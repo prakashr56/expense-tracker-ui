@@ -1,34 +1,99 @@
 
     
 <!-- Default form login -->
-<form class="text-center border border-light p-5" action="#!">
+<form class="text-center border border-light p-5" name="userLogin" ng-submit="loginUser()" novalidate >
 
     <p class="h4 mb-4">Sign in</p>
 
-    <!-- Email -->
-    <input type="email" [(ngModel)]="user.userName" name="userName" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" >
+    <!-- <input type="email" [(ngModel)]="user.email" minlength="3" name="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" > -->
 
-    <!-- Password -->
-    <input type="password" [(ngModel)]="user.password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" >
+    <div class="form-group">
+          <input type="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" required
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" name="email"  placeholder="E-mail"
+          [(ngModel)]="user.email" />
+      
+        <div *ngIf="email.errors && (email.invalid && email.touched || email.dirty ) ">
+          <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+          <small class="text-danger" *ngIf="email.errors.pattern">Please provide a valid email address</small>
+        </div>
+
+        <!-- <input type="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" [(ngModel)]="user.email"
+         name="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" > -->
+    </div>
+
+    <!-- <input type="password" [(ngModel)]="user.password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" > -->
+
+    <div class="form-group">
+      <input type="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" required
+          class="form-control" name="password"  placeholder="Password"
+          [(ngModel)]="user.password" />
+  
+      <div *ngIf="password.errors && (password.invalid && password.touched || password.dirty )">
+        <small class="text-danger" *ngIf="password.errors.required">Password is required</small>
+      </div>
+
+    </div>
 
     <div class="d-flex justify-content-around">
         <div>
-            <!-- Remember me -->
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
                 <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
             </div>
         </div>
         <div>
-            <!-- Forgot password -->
             <a href="">Forgot password?</a>
         </div>
     </div>
 
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4" type="submit" (click)="loginUser()">Sign in</button>
+    <!-- <button class="btn btn-info btn-block my-4" type="submit" (click)="loginUser()">Sign in</button> -->
+
+    <button class="btn btn-info btn-block my-4" type="submit" ng-disabled="userLogin.$invalid" (click)="loginUser(user)" ng-model="formValues.submit" >Sign in</button>
+
 
     <button class="btn btn-light btn-block my-4" type="submit" routerLink="/register" routerLinkActive="active">Register</button>
 
 </form>
 <!-- Default form login -->
+
+
+<!-- <body class="container-fluid">
+    <div class="login-form-wrap">
+      <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container-fluid">
+          <div class="login-content custom-login float-right">
+            <div class="login-logo">
+                <span class="login100-form-title p-b-34 p-t-27">
+                    Log in
+                </span>
+            </div>
+            <div class="login-form ">
+              <div class="form-group">
+                <input type="email" [(ngModel)]="user.userName" name="userName" class="form-control" id="email" maxlength="25" placeholder="Email" />
+              </div>
+              <div class="form-group">
+                <input
+                type="password" [(ngModel)]="user.password" name="password"
+                  maxlength="8"
+                  class="form-control"
+                  placeholder="Password"
+                  id="password"
+                />
+              </div>
+              <button  type="submit" class="btn loginbtn m-b-30 m-t-30 center mr-auto btn-font" id="login" (click)="loginUser()" >
+                 Login
+              </button>
+              <button class="btn loginbtn m-b-30 m-t-30 center mr-auto btn-font btn2" type="submit" routerLink="/register" routerLinkActive="active">Register</button>
+
+             <div class="register-link m-t-15 text-center">
+                <p id="forgot"> Forgot Password</a></p>
+              </div> -->
+              <!-- <div id="message">
+                <p>Your password has been sent to your mail id</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body> -->

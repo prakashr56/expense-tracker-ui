@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Expense } from '../model/expense';
 import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
+import { DateRange } from 'moment-range';
 
 
 @Component({
@@ -19,8 +21,10 @@ export class ExpenseComponent implements OnInit {
   httpOptions;
   filterName: string = "";
   filterText: string ="";
-  fromDate: NgbDate | null;
-  toDate: NgbDate | null;
+
+  date1: string = Date.now().toString();
+  date2: string;
+  date = new Date();
 
   constructor(private http: HttpClient,
     private activatedRoute: ActivatedRoute,
@@ -28,8 +32,7 @@ export class ExpenseComponent implements OnInit {
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter
     ) {
-        this.fromDate = calendar.getToday();
-        this.toDate = calendar.getToday();
+  
      }
 
   ngOnInit() {
@@ -40,6 +43,11 @@ export class ExpenseComponent implements OnInit {
 
     this.getExpenseList();
 
+    this.filterName = "createdAt";
+
+    this.date1  = new Date(this.date.getFullYear(), this.date.getMonth(), 2).toJSON().split("T")[0] ;
+
+    this.date2  = new Date().toJSON().split("T")[0] ;
   }
 
   getExpenseList(){
@@ -52,8 +60,7 @@ export class ExpenseComponent implements OnInit {
   filterSearch(){
 
         this.expenses = this.expenses.filter(
-          m => new Date(m.createdAt) >= new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day) 
-              && new Date(m.createdAt) <= new Date(this.toDate.year, this.toDate.month-1, this.toDate.day)
+          m => new Date(m.createdAt) >= new Date(this.date1) && new Date(m.createdAt) <= new Date(this.date2)
         );
       
        if(this.filterText || 0 <= this.filterText.length){

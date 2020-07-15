@@ -7,15 +7,20 @@
 
     <input type="text" placeholder="search" (keyup)="getExpenseList()" [(ngModel)]="filterText" >
     <select id="filter" class="filter custom-select" style="width: auto"  [(ngModel)]="filterName" (change)="getExpenseList()"  >
-        <option value="amount">amount</option>
         <option value="createdAt">Date</option>
+        <option value="amount">amount</option>
     </select>    
 
-    <input class="form-control" placeholder="yyyy-mm-dd"
+    <!-- <input class="form-control" placeholder="yyyy-mm-dd"
     name="dp" [(ngModel)]="fromDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (dateSelect)="getExpenseList()" >
 
     <input class="form-control" placeholder="yyyy-mm-dd"
-    name="dt" [(ngModel)]="toDate" ngbDatepicker #t="ngbDatepicker" (click)="t.toggle()" (dateSelect)="getExpenseList()" >
+    name="dt" [(ngModel)]="toDate" ngbDatepicker #t="ngbDatepicker" (click)="t.toggle()" (dateSelect)="getExpenseList()" > -->
+
+    <input type="date" [(ngModel)]="date1" name="date1" (change)="getExpenseList()" />
+
+    <input type="date"  [(ngModel)]="date2" name="date2" /> 
+    
 
 
     <table class="table table-striped">

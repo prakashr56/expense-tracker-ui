@@ -1,3 +1,4 @@
+import { SuccessComponent } from './success/success.component';
 import { AddexpenseComponent } from './addexpense/addexpense.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { RegisterComponent } from './register/register.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'login',  component: LoginComponent },
   { path: 'register',  component: RegisterComponent },
   { path: 'expense',  component: ExpenseComponent },
-  { path: '', redirectTo:'/login', pathMatch:'full' } 
+  { path: '', redirectTo:'/login', pathMatch:'full' },
+  { path: 'success/:response',  component: SuccessComponent }
 ];
 
 @NgModule({

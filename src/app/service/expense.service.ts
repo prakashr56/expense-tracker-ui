@@ -1,3 +1,4 @@
+import { ApicallService } from './apicall.service';
 import { Router } from '@angular/router';
 import { Expense } from './../model/expense';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -13,11 +14,12 @@ export class ExpenseService {
   httpOptions;
 
   constructor(private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private apiService: ApicallService
     ) { }
 
   getExpenseList(userId: number) {
-    return this.httpClient.get("https://prakashr-expense-tracker-api.herokuapp.com/expense/"+userId).
+    return this.httpClient.get(this.apiService.hostName+"/expense/"+userId).
         pipe(
            map((data: Expense[]) => {
              console.log("ExpenseData:  "+ JSON.stringify(data));
@@ -30,7 +32,7 @@ export class ExpenseService {
     }
 
     getExpense(id: number) {
-      return this.httpClient.get("https://prakashr-expense-tracker-api.herokuapp.com/expense/userexpense/"+id).
+      return this.httpClient.get(this.apiService.hostName+"/expense/userexpense/"+id).
           pipe(
              map((data: Expense[]) => {
                console.log("expense data "+ JSON.stringify(data));
@@ -55,7 +57,7 @@ export class ExpenseService {
         };  
           
         this.httpClient
-          .post<any>(`https://prakashr-expense-tracker-api.herokuapp.com/expense/save`, JSON.stringify(expense), this.httpOptions
+          .post<any>(this.apiService.hostName+`/expense/save`, JSON.stringify(expense), this.httpOptions
           )
           .subscribe(
             response => {
@@ -81,7 +83,7 @@ export class ExpenseService {
         };  
           
         this.httpClient
-          .delete<any>(`https://prakashr-expense-tracker-api.herokuapp.com/expense/delete/`+expenseId, this.httpOptions
+          .delete<any>(this.apiService.hostName+`/expense/delete/`+expenseId, this.httpOptions
           )
           .subscribe(
             response => {

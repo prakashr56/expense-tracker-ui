@@ -1,3 +1,4 @@
+import { Users } from './../users';
 import { LoginapiService } from './../service/loginapi.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,8 +18,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(){
-    this.loginService.loginUser(this.user);
+  loginUser(user: Users){
+    // alert(user.email)
+    // return;
+    this.loginService.loginUser(user);
   }
 
 }

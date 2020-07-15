@@ -5,12 +5,14 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { AddexpenseComponent } from './addexpense/addexpense.component';
 import { NgbModule  } from '@ng-bootstrap/ng-bootstrap';
+import { SuccessComponent } from './success/success.component';
+import { ConfirmEqualValidatorDirective } from './directives/confirm-equal-validator.directive';
 
 
 @NgModule({
@@ -20,14 +22,17 @@ import { NgbModule  } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     RegisterComponent,
     ExpenseComponent,
-    AddexpenseComponent
+    AddexpenseComponent,
+    SuccessComponent,
+    ConfirmEqualValidatorDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

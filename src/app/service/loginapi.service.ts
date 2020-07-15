@@ -1,3 +1,5 @@
+import { Users } from './../users';
+import { ApicallService } from './apicall.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,10 +13,11 @@ export class LoginapiService {
   userId: number;
 
   constructor(private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private apiService: ApicallService
     ) { }
 
-  loginUser(user: any){
+  loginUser(user: Users){
 
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -25,14 +28,17 @@ export class LoginapiService {
     };
       
       this.http
-        .post<any>(`https://prakashr-expense-tracker-api.herokuapp.com/login/loginUser`, JSON.stringify(user), this.httpOptions
+        .post<any>(this.apiService.hostName+`/login/loginUser`, user, this.httpOptions
         )
         .subscribe(
           response => {
            
+            // alert( 'Registered successfully!' + response);
+
             this.userId =  Object.values(response)[0];
             
-            this.router.navigate(["/user/"+this.userId+"/expense"]);        
+            this.router.navigate(["/user/"+this.userId+"/expense"]); 
+                 
           },
           error => {
             alert( 'Something went wrong!');

@@ -13,7 +13,14 @@ import { Expense } from '../model/expense';
 })
 export class ApicallService {
 
-  constructor( private httpClient: HttpClient) { }
+  public hostName: string;
+
+  constructor( private httpClient: HttpClient) { 
+
+    this.hostName = `https://prakashr-expense-tracker-api.herokuapp.com`;
+    // this.hostName = `http://localhost:8080`;
+
+  }
   getUsers() {
     return this.httpClient.get(`https://prakashr-expense-tracker-api.herokuapp.com/api/userList`).
         pipe(
