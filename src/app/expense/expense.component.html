@@ -19,7 +19,7 @@
 
     <input type="date" [(ngModel)]="date1" name="date1" (change)="getExpenseList()" />
 
-    <input type="date"  [(ngModel)]="date2" name="date2" /> 
+    <input type="date"  [(ngModel)]="date2" name="date2" (change)="getExpenseList()" /> 
     
 
 
@@ -43,7 +43,7 @@
         </tbody>
     </table>
 
-    <div class="card bg-light mb-3" style="max-width: 18rem;">
+    <!-- <div class="card bg-light mb-3" style="max-width: 18rem;">
         <div class="card-header">Expense List</div>
         <div class="card-body"  *ngFor="let expense of expenses">
           <h5 class="card-title">{{ expense.description }}</h5>
@@ -52,7 +52,7 @@
                 <span class="badge badge-pill badge-warning">{{expense.amount}}</span>
             </div>
         </div>
-      </div>
+      </div> -->
 
     <form class="text-center border border-light p-5" action="#!">
 

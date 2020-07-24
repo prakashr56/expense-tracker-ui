@@ -23,7 +23,7 @@ export class SuccessComponent implements OnInit {
 
    this.response = this.activatedRoute.snapshot.paramMap.get("response");
 
-    if(!this.response.includes("Account Verified") && !this.response.includes("Something Wrong")){
+    if(!this.response.includes("Account Verified") && !this.response.includes("Something Wrong") && !this.response.includes("Success")){
       this.confirmToken();
     }
 
